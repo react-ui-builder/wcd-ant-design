@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SampleClassComponentProps, SampleClassComponentTypes } from './SampleClassComponent.props';
-import {Button} from 'antd';
+import {Button as AntButton} from 'antd';
 
 interface SampleClassComponentState {
     valueLocal?: number;
@@ -47,9 +47,9 @@ class SampleClassComponent extends React.Component<SampleClassComponentProps, Sa
         const { disabled, label } = this.props;
         const { valueLocal } = this.state;
         return (
-            <Button type='primary' size='large' disabled={disabled} onClick={this.handleClick}>
+            <AntButton type='primary' size='large' disabled={disabled} onClick={this.handleClick}>
                 Value:&nbsp;{valueLocal}&nbsp;|&nbsp;{label}
-            </Button>
+            </AntButton>
         );
     }
 }

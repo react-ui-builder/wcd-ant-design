@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SampleFunctionComponentProps, SampleFunctionComponentTypes } from './SampleFunctionComponent.props';
-import {Button} from 'antd';
+import {Button as AntButton} from 'antd';
 
 /**
  * This is a sample component, it shows how to create function wrappers.
@@ -22,9 +22,9 @@ const SampleFunctionComponent = (props: SampleFunctionComponentProps) => {
     };
 
     return (
-        <Button type='primary' size='large' disabled={props.disabled} onClick={handleClick}>
+        <AntButton type='primary' size='large' disabled={props.disabled} onClick={handleClick}>
             Value:&nbsp;{valueLocal}&nbsp;|&nbsp;{props.label}
-        </Button>
+        </AntButton>
     );
 };
 
