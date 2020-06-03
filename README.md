@@ -15,8 +15,6 @@ Since React UI Builder is based on a visual Web application builder - [Webcodesk
 **Please note:** We understand that you may already have a ready-made component library or you are going to publish a library based on some popular component package that already exists.
 But due to the fact that all components have different implementation approaches, and may differ in the description of properties in code, we propose to create wrappers for components using TypeScript and PropTypes to unify the description of properties.
 
-So please find the sample source code for component wrappers in the `/src/usr/sample` directory of this project. Create your new components using these samples as the templates.
-
 5. Switch to the Webcodesk tab in the browser and find your component in the `Components` section in the left panel.
 
 > Read more about how to create reusable components in Webcodesk here: [Webcodesk User Guide](https://github.com/webcodesk/webcodesk-srv/blob/master/docs/README.md) 
