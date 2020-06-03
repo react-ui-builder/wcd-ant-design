@@ -16,7 +16,7 @@ export const StackTypes: PropTypes.InferProps<StackProps> = {
         'row', 'column'
     ]),
     /**
-     * Defines the space between the cells. The property is multiplied by the theme spacing value.
+     * Defines the space between the cells.
      */
     spacing: PropTypes.oneOf([
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'

@@ -53,7 +53,7 @@ class Stack extends React.Component<StackProps, any> {
             }
         }
 
-        let style: any = { gridGap: (parseInt(spacing as string)) };
+        let style: any = { gridGap: `${parseInt(spacing as string) * 8}px` };
         if (justifyContent) {
             style.justifyContent = justifyContent;
         }
