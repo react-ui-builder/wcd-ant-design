@@ -13,13 +13,11 @@ const userFunctions: any = require('./app/indices/userFunctions').default;
 function render() {
     getDemoFiles({ schema }).then(({ schema }: { schema: any }) => {
         ReactDOM.render(
-            <React.StrictMode>
-                <Application
-                    schema={schema}
-                    userComponents={userComponents}
-                    userFunctions={userFunctions}
-                />
-            </React.StrictMode>,
+            <Application
+                schema={schema}
+                userComponents={userComponents}
+                userFunctions={userFunctions}
+            />,
             document.getElementById('root')
         );
     });
@@ -28,15 +26,13 @@ function render() {
 if (process.env.NODE_ENV !== 'production') {
     const packageJson = require('../package.json');
     ReactDOM.render(
-        <React.StrictMode>
-            <Application
-                name={packageJson.name}
-                version={packageJson.version}
-                schema={schema}
-                userComponents={userComponents}
-                userFunctions={userFunctions}
-            />
-        </React.StrictMode>,
+        <Application
+            name={packageJson.name}
+            version={packageJson.version}
+            schema={schema}
+            userComponents={userComponents}
+            userFunctions={userFunctions}
+        />,
         document.getElementById('root')
     );
 } else {
