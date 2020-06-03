@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StackProps, StackTypes } from './Stack.props';
+import * as _ from "lodash";
 
-const styles: any = () => ({
+const stylesGrid = {
     gridWithRow: {
         width: '100%',
         display: 'grid',
@@ -14,7 +15,7 @@ const styles: any = () => ({
         gridTemplateColumns: '1fr',
         gridTemplateRows: 'repeat(auto-fill, minmax(10px, 1fr) )',
     },
-});
+};
 
 /**
  * A simple CSS grid wrapper that can be used to arrange the sections in two directions
@@ -31,36 +32,20 @@ class Stack extends React.Component<StackProps, any> {
         super(props);
         const { classes } = this.props;
         this.classByDirection = {
-            'row': null,
-            'column': null,
+            'row': stylesGrid.gridWithRow,
+            'column': stylesGrid.gridWithColumn,
         };
     }
 
     render(): JSX.Element {
         const { direction, spacing, justifyContent, justifyItems, cells } = this.props;
         const contentList: JSX.Element[] = [];
-        let styleCell: any = {display: 'flex'};
-        let styleLastCell: any = {display: 'flex'};
-        if (direction === 'row') {
-            styleCell.marginBottom = (parseInt(spacing as string) * 5) + "px";
-        } else {
-            styleCell.marginRight = (parseInt(spacing as string) * 5) + "px";
-        };
 
-        if (justifyContent) {
-            styleCell.justifyContent = justifyContent;
-            styleLastCell.justifyContent = justifyContent;
-        }
-        if (justifyItems) {
-            styleCell.justifyItems = justifyItems;
-            styleLastCell.justifyItems = justifyItems;
-        }
         if (cells && cells.length > 0) {
             for (let i = 0; i < cells.length; i++) {
                 contentList.push(
                     <div
                         key={`cell${i}`}
-                        style={i === cells?.length - 1 ? styleLastCell : styleCell}
                     >
                         {cells[i]}
                     </div>
@@ -68,18 +53,16 @@ class Stack extends React.Component<StackProps, any> {
             }
         }
 
-        let style: any = {};
-        if (direction === 'row') {
-            style.display = 'block';
-        } else {
-            style.display = 'flex';
-            style.flexDirection = 'row';
+        let style: any = { gridGap: (parseInt(spacing as string)) };
+        if (justifyContent) {
+            style.justifyContent = justifyContent;
         }
-
+        if (justifyItems) {
+            style.justifyItems = justifyItems;
+        }
         return (
             <div
-                className={this.classByDirection[direction!]}
-                style={style}
+                style={_.assign({}, style, this.classByDirection[direction!])}
             >
                 {contentList}
             </div>
