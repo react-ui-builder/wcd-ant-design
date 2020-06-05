@@ -1,1 +1,1 @@
-{"usr.general.Button_button1":{"label":"Button","type":"primary"},"usr.general.Button_button2":{"label":"Button","type":"primary"},"usr.general.Button_button3":{"label":"Button","type":"primary"},"usr.layout.Stack_stack1":{"cells":[],"direction":"column","justifyContent":"center","justifyItems":"center","spacing":"10"}}
+{"usr.layout.Stack_stack1":{"cells":[],"direction":"column","spacing":"2"}}
