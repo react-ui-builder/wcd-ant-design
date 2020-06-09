@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
 import { Typography as AntTypography }  from 'antd';
+import * as _ from "lodash";
 import pickWithValues from "usr/a_lib/utils/pickWithValues";
 import { TypographyProps, TypographyTypes } from './Typography.props';
 
@@ -24,6 +25,8 @@ const Typography = (props: TypographyProps): JSX.Element => {
         disabled,
         editable,
         ellipsis,
+        ellipsisProps,
+        onExpandEllipsis,
         href,
         target,
         level,
@@ -36,6 +39,8 @@ const Typography = (props: TypographyProps): JSX.Element => {
         variant,
     } = props;
 
+
+
     const {Paragraph: AntParagraph, Text: AntText, Title: AntTitle, Link: AntLink} = AntTypography;
     const [stateText, setStateText] = React.useState<any>(text);
 
@@ -45,6 +50,23 @@ const Typography = (props: TypographyProps): JSX.Element => {
             props.onChange(text);
         }
     };
+
+    const handleExpand = (e: Event) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (onExpandEllipsis) {
+            onExpandEllipsis();
+        }
+    };
+    const ellipsisPropsWithValues = pickWithValues(ellipsisProps);
+    const ellipsisObject = (ellipsisProps && ellipsisPropsWithValues && !_.isEmpty(ellipsisPropsWithValues)) ?
+        {
+            rows: ellipsisProps.rows || 1,
+            expandable: !!ellipsisProps.expandable,
+            suffix: ellipsisProps.suffix || "",
+            symbol: ellipsisProps.symbol ? ellipsisProps.symbol : null,
+            onExpand: handleExpand,
+        } : null;
 
     let component: JSX.Element;
     let editableObject: any;
@@ -61,7 +83,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
                 delete: deleteProps,
                 disabled,
                 editable: editableObject,
-                ellipsis,
+                ellipsis: ellipsisObject ? ellipsisObject : ellipsis,
                 mark,
                 keyboard,
                 underline,
@@ -81,7 +103,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
                 delete: deleteProps,
                 disabled,
                 editable: editableObject,
-                ellipsis,
+                ellipsis: ellipsisObject ? ellipsisObject : ellipsis,
                 level: parseInt(level ? level : '1'),
                 mark,
                 keyboard,
@@ -101,7 +123,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
                 delete: deleteProps,
                 disabled,
                 editable: editableObject,
-                ellipsis,
+                ellipsis: ellipsisObject ? ellipsisObject : ellipsis,
                 href,
                 target: target ? target : '_self',
                 mark,
@@ -123,7 +145,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
                 delete: deleteProps,
                 disabled,
                 editable: editableObject,
-                ellipsis,
+                ellipsis: ellipsisObject ? ellipsisObject : ellipsis,
                 mark,
                 keyboard,
                 underline,

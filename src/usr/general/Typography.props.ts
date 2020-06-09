@@ -8,6 +8,13 @@ export interface TypographyProps {
     disabled?: boolean;
     editable?: boolean;
     ellipsis?: boolean;
+    ellipsisProps?: {
+        rows: number;
+        expandable: boolean;
+        suffix: string;
+        symbol: ReactNode;
+    };
+    onExpandEllipsis?: () => void;
     href?: string;
     target?: '_blank' | '_self' | '_parent';
     level?: '1' | '2' | '3' | '4';
@@ -47,6 +54,19 @@ export const TypographyTypes: PropTypes.InferProps<TypographyProps> = {
      * Display ellipsis when text overflows. Should set width when ellipsis needed
      */
     ellipsis: PropTypes.bool,
+    /**
+     * Ellipsis props (additional settings for ellipsis)
+     */
+    ellipsisProps: PropTypes.shape({
+        rows: PropTypes.number,
+        expandable: PropTypes.bool,
+        suffix: PropTypes.string,
+        symbol: PropTypes.node,
+    }),
+    /**
+     * onExpand: () => void
+     */
+    onExpandEllipsis: PropTypes.func,
     /**
      * href for link. Is used onlu for variant: "link"
      */
