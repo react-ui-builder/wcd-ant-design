@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useEffect} from 'react';
 import { Typography as AntTypography }  from 'antd';
 import * as _ from "lodash";
 import pickWithValues from "usr/a_lib/utils/pickWithValues";
@@ -75,6 +75,10 @@ const Typography = (props: TypographyProps): JSX.Element => {
         editableObject.editable = true;
         editableObject.onChange = handleTypographyChange;
     }
+
+    useEffect(() => {
+        setStateText(props.text);
+    }, [props.text]);
 
     switch (variant) {
         case 'paragraph':
@@ -167,6 +171,7 @@ const Typography = (props: TypographyProps): JSX.Element => {
 Typography.propTypes = TypographyTypes;
 
 Typography.defaultProps = {
+    text: 'Typography',
     variant: 'text',
     level: '1',
 };
